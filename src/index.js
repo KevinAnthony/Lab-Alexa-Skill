@@ -1,6 +1,6 @@
 'use strict';
 var Alexa = require('alexa-sdk');
-var APP_ID = 'amzn1.ask.skill.169e55f7-3454-4c39-99af-dacda25ae8a1';
+var APP_ID = 'amzn1.ask.skill.ef048e19-df64-4b63-afe5-878ebbe97317';
 
 exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -13,24 +13,18 @@ exports.handler = function(event, context, callback) {
 };
 
 var handlers = {
-    'LaunchRequest': function () {
-        this.emit('Run');
-    },
-    'RunIntent': function () {
+    'RunIntent': function (intent, session, response) {
         this.emit('Play');
     },
-    'Play': function () {
-        this.emit(':tell', 'Reached Play Funtion');
-    },
-    'AMAZON.HelpIntent': function () {
+    'AMAZON.HelpIntent': function (intent, session, response) {
         var speechOutput = this.t("HELP_MESSAGE");
         var reprompt = this.t("HELP_MESSAGE");
         this.emit(':ask', speechOutput, reprompt);
     },
-        'AMAZON.CancelIntent': function () {
+        'AMAZON.CancelIntent': function (intent, session, response) {
         this.emit(':tell', this.t("STOP_MESSAGE"));
     },
-        'AMAZON.StopIntent': function () {
+        'AMAZON.StopIntent': function (intent, session, response) {
         this.emit(':tell', this.t("STOP_MESSAGE"));
     }
 }
